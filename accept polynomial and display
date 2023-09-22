@@ -1,0 +1,55 @@
+include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+        int coeff;
+        int expo;
+        struct node *next;
+}node;
+node  *create(node *list)
+{
+        node *newnode,*temp;
+        int n,i;
+        printf("enter limit of poly");
+        scanf("%d",&n);
+        for(i=n-1;i>=0;i--)
+        {
+                newnode=(node*)malloc(sizeof( node));
+
+                printf("enter coeff");
+                scanf("%d",&newnode->coeff);
+                newnode->expo=i;
+                newnode->next=NULL;
+                if(list==NULL)
+                {
+                        list=temp=newnode;
+                }
+                else
+                {
+                        temp->next=newnode;
+                        temp=newnode;
+                }
+        }
+        return list;
+}
+
+         void disp(node *list)
+{
+        node *temp;
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+        printf("%dx^%d +",temp->coeff,temp->expo);
+}
+        printf("\b ");
+}
+
+
+        int main()
+        {
+        node *list=NULL;
+        list=create(list);
+        disp(list);
+
+
+}
+
